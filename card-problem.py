@@ -7,11 +7,10 @@ def ith_perm(i, four): return [four[k] for k in perms[i]]
 
 def perm_i(four):
     s = sorted(four)
-    return perm_index[tuple([s.index(x) for x in four])]
+    return perm_index[tuple(s.index(x) for x in four)]
 
-def hide_one_show_four(five, already_sorted=False):
-    if not already_sorted: five = sorted(five)
-    y, z, *xs = five
+def hide_one_show_four(five):
+    y, z, *xs = five  # assumes sorted
     if z <= 24: return y, ith_perm(y, [z] + xs)
     elif y >= z - 24: return y, ith_perm(y - z + 24, [z] + xs)
     else: return z, ith_perm(z - 25, [y] + xs)
@@ -23,6 +22,6 @@ def guess_hidden(four):
     else: return p
 
 for five in combinations(range(52), 5):
-    one, four = hide_one_show_four(five, already_sorted=True)
+    one, four = hide_one_show_four(five)
     assert one == guess_hidden(four)
 print('works for all inputs!')
