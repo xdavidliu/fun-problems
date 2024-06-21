@@ -6,7 +6,7 @@ perm_index = {p : i for i, p in enumerate(perms)}
 
 def ith_perm(i, four): return [four[k] for k in perms[i]]
 
-def perm_i(four):
+def i_of_perm(four):
     s = sorted(four)
     return perm_index[tuple(s.index(x) for x in four)]
 
@@ -17,10 +17,10 @@ def hide_one_show_four(five):
     else: return z, ith_perm(z - 25, [y] + xs)
 
 def guess_hidden(four):
-    p, q = perm_i(four), min(four)
-    if q > 24: return p + q - 24
-    elif p >= q: return p + 25
-    else: return p
+    i, q = i_of_perm(four), min(four)
+    if q > 24: return i + q - 24
+    elif i >= q: return i + 25
+    else: return i
 
 for five in combinations(range(52), 5):
     one, four = hide_one_show_four(five)
