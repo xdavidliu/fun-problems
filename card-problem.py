@@ -1,3 +1,4 @@
+# https://math.stackexchange.com/a/4935029/185635
 from itertools import permutations, combinations
 
 perms = list(permutations([0, 1, 2, 3]))
